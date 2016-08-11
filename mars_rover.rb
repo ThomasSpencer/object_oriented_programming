@@ -6,7 +6,15 @@ class Rover
     @direction = direction
   end
 
-  def read_instruction(*instruction)
+  def read_instruction
+    puts "Please input instructions"
+    puts "M - Move forward"
+    puts "L - Turn left"
+    puts "R - Turn right"
+    command = gets.chomp
+
+    instruction = command.split('')
+
     instruction.each do |x|
       case x
       when "M"
@@ -16,7 +24,7 @@ class Rover
       when "R"
         self.turn("R")
       end
-      return "The rover is now at #{@x}, #{@y} facing #{@direction}."
+      puts "#{@x}, #{@y}, #{@direction}."
     end
   end
 

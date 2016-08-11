@@ -10,6 +10,8 @@ class Cat
     if @meal_time > 12
       evening = @meal_time - 12
       return "#{evening} PM"
+    elsif @meal_time == 0
+      return "12 AM"
     else
       return "#{@meal_time} AM"
     end

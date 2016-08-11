@@ -15,8 +15,13 @@ class Cat
     end
   end
 
+  def meow
+    return "Meow, my name is #{@name}. I PUR-fer to eat #{@preferred_food} at #{self.eats_at}"
+  end
 end
 
 felix = Cat.new('Felix', 'fish', 16)
+puts felix.meow
 
 garfield = Cat.new('Garfield', 'lasagna', 8)
+puts garfield.meow

@@ -77,11 +77,22 @@ plateau = Plateau.new(plateau_size[0].to_i, plateau_size[1].to_i)
 
 puts "Please provide where rover_1 will be placed and it's facing"
 answer = gets.chomp.split(' ')
-rover_1 = Rover.new(answer[0].to_i, answer[1].to_i, answer[2].to_s, plateau)
+rover_1 = Rover.new(answer[0].to_i, answer[1].to_i, answer[2].to_s.upcase, plateau)
+puts "New rover created."
+
+puts "Please provide where rover_2 will be placed and it's facing"
+answer = gets.chomp.split(' ')
+rover_2 = Rover.new(answer[0].to_i, answer[1].to_i, answer[2].to_s.upcase, plateau)
 puts "New rover created."
 
 puts "Please input instructions for rover_1 (M = move forward, L = turn left, R = turn right)"
-instructions = gets.chomp.upcase.split('')
-rover_1.read_instruction(instructions)
+instructions_1 = gets.chomp.upcase.split('')
+rover_1.read_instruction(instructions_1)
+
+puts "Please input instructions for rover_2 (M = move forward, L = turn left, R = turn right)"
+instructions_2 = gets.chomp.upcase.split('')
+rover_2.read_instruction(instructions_2)
+
 
 puts "#{rover_1.x} #{rover_1.y} #{rover_1.direction}"
+puts "#{rover_2.x} #{rover_2.y} #{rover_2.direction}"

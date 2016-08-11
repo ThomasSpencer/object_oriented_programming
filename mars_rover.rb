@@ -6,8 +6,18 @@ class Rover
     @direction = direction
   end
 
-  def read_instruction()
-    
+  def read_instruction(*instruction)
+    instruction.each do |x|
+      case x
+      when "M"
+        self.move
+      when "L"
+        self.turn("L")
+      when "R"
+        self.turn("R")
+      end
+      return "The rover is now at #{@x}, #{@y} facing #{@direction}."
+    end
   end
 
   def move
@@ -48,5 +58,4 @@ class Rover
       end
     end
   end
-
 end

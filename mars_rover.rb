@@ -1,17 +1,17 @@
 class Rover
 
-  def initialize(x, y, direction)#, plateau)
+  attr_reader :x, :y, :direction
+
+  def initialize(x, y, direction, plateau_size)
     @x = x
     @y = y
     @direction = direction
-    #@plateau = plateau
+    @plateau_size = plateau_size
   end
 
-  def read_instruction
-    puts "Please input instructions (M = move forward, L = turn left, R = turn right)"
-    instruction = gets.chomp.upcase.split('')
-    instruction.each do |x|
-      case x
+  def read_instruction(x)
+    x.each do |command|
+      case command
       when "M"
         self.move
       when "L"
@@ -25,13 +25,13 @@ class Rover
 
   def move
     if @direction == "N"
-      @y += 1 #unless @y + 1 > @plateau.max_y
+      @y += 1 unless @y + 1 > @plateau_size.max_y
     elsif @direction == "E"
-      @x += 1 #unless @y + 1 > @plateau.max_x
+      @x += 1 unless @x + 1 > @plateau_size.max_x
     elsif @direction == "S"
-      @y -= 1 #unless @y - 1 < 0
+      @y -= 1 unless @y - 1 < 0
     elsif @direction == "W"
-      @x -= 1 #unless @x - 1 < 0
+      @x -= 1 unless @x - 1 < 0
     end
   end
 
@@ -61,20 +61,27 @@ class Rover
   end
 end
 
-# class Plateau
-#
-#   attr_reader :max_x, :max_y
-#
-#   def initialize(max_x, max_y)
-#     @max_x = max_x
-#     @max_y = max_y
-#   end
-# end
-#
-# puts "Please provide the maximum for the X and Y axis."
-# plateau_size = gets.chomp.split(' ')
-# plateau = Plateau.new(plateau_size[0], plateau_size[1])
-#
-# puts "Please provide where rover_1 will be placed and it's facing"
-# answer = gets.chomp.split(' ')
-# rover_1 = Rover.new(answer[0], answer[1], answer[2], plateau)
+class Plateau
+
+  attr_reader :max_x, :max_y
+
+  def initialize(max_x, max_y)
+    @max_x = max_x
+    @max_y = max_y
+  end
+end
+
+puts "Please provide the maximum for the X and Y axis."
+plateau_size = gets.chomp.split(' ')
+plateau = Plateau.new(plateau_size[0].to_i, plateau_size[1].to_i)
+
+puts "Please provide where rover_1 will be placed and it's facing"
+answer = gets.chomp.split(' ')
+rover_1 = Rover.new(answer[0].to_i, answer[1].to_i, answer[2].to_s, plateau)
+puts "New rover created."
+
+puts "Please input instructions for rover_1 (M = move forward, L = turn left, R = turn right)"
+instructions = gets.chomp.upcase.split('')
+rover_1.read_instruction(instructions)
+
+puts "#{rover_1.x} #{rover_1.y} #{rover_1.direction}"

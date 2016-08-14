@@ -10,7 +10,7 @@ item_looking_for = gets.chomp
 puts "... Fount it! Oh no, our scanning system isn't working! How much was the item?"
 cost_looking_for = gets.chomp
 
-@shopping_cart << Item.new(item_looking_for, cost_looking_for, type_looking_for)
+@shopping_cart << Item.new(item_looking_for, cost_looking_for.to_f, type_looking_for)
 
 def continue_shopping
   puts "Hello again! Welcome back to Tom\'s Superstore. What type of item are you looking for? (Food, Medical, Book, Other)"
@@ -20,7 +20,7 @@ def continue_shopping
   puts "... Fount it! Oh no, our scanning system isn't working! How much was the item?"
   cost_looking_for = gets.chomp
 
-  @shopping_cart << Item.new(item_looking_for, cost_looking_for.to_i, type_looking_for)
+  @shopping_cart << Item.new(item_looking_for, cost_looking_for.to_f, type_looking_for)
 end
 
 loop do
